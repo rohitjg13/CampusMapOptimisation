@@ -1,0 +1,136 @@
+{
+  "locations": [
+    {
+      "id": "library",
+      "name": "Central Library",
+      "lat": 28.525237,
+      "lng": 77.570965,
+      "category": "Academic",
+      "description": "Main campus library with study halls and resources"
+    },
+    {
+      "id": "admin_block",
+      "name": "Administration Block",
+      "lat": 28.524850,
+      "lng": 77.571200,
+      "category": "Administrative",
+      "description": "Main administrative offices and registrar"
+    },
+    {
+      "id": "cafeteria",
+      "name": "Student Cafeteria",
+      "lat": 28.525400,
+      "lng": 77.570700,
+      "category": "Dining",
+      "description": "Main dining hall and food court"
+    },
+    {
+      "id": "computer_center",
+      "name": "Computer Center",
+      "lat": 28.525100,
+      "lng": 77.571300,
+      "category": "Academic",
+      "description": "Computer labs and IT services"
+    },
+    {
+      "id": "auditorium",
+      "name": "Main Auditorium",
+      "lat": 28.524900,
+      "lng": 77.570800,
+      "category": "Events",
+      "description": "Large auditorium for events and lectures"
+    },
+    {
+      "id": "hostel_a",
+      "name": "Hostel A",
+      "lat": 28.525600,
+      "lng": 77.570500,
+      "category": "Accommodation",
+      "description": "Student hostel block A"
+    },
+    {
+      "id": "hostel_b",
+      "name": "Hostel B",
+      "lat": 28.525700,
+      "lng": 77.570300,
+      "category": "Accommodation",
+      "description": "Student hostel block B"
+    },
+    {
+      "id": "sports_complex",
+      "name": "Sports Complex",
+      "lat": 28.525000,
+      "lng": 77.570400,
+      "category": "Recreation",
+      "description": "Gymnasium and sports facilities"
+    },
+    {
+      "id": "engineering_block",
+      "name": "Engineering Department",
+      "lat": 28.524700,
+      "lng": 77.571100,
+      "category": "Academic",
+      "description": "Engineering and technology departments"
+    },
+    {
+      "id": "science_block",
+      "name": "Science Department",
+      "lat": 28.525300,
+      "lng": 77.571000,
+      "category": "Academic",
+      "description": "Science and research laboratories"
+    },
+    {
+      "id": "medical_center",
+      "name": "Medical Center",
+      "lat": 28.524600,
+      "lng": 77.570600,
+      "category": "Healthcare",
+      "description": "Campus health services and medical facilities"
+    },
+    {
+      "id": "parking_main",
+      "name": "Main Parking",
+      "lat": 28.524500,
+      "lng": 77.571400,
+      "category": "Parking",
+      "description": "Main vehicle parking area"
+    },
+    {
+      "id": "guest_house",
+      "name": "Guest House",
+      "lat": 28.525500,
+      "lng": 77.571500,
+      "category": "Accommodation",
+      "description": "Visitor accommodation and guest rooms"
+    },
+    {
+      "id": "main_gate",
+      "name": "Main Gate",
+      "lat": 28.524400,
+      "lng": 77.571600,
+      "category": "Entry",
+      "description": "Main campus entrance and security checkpoint"
+    },
+    {
+      "id": "research_center",
+      "name": "Research Center",
+      "lat": 28.525800,
+      "lng": 77.570900,
+      "category": "Research",
+      "description": "Advanced research facilities and labs"
+    }
+  ],
+  "categories": [
+    "Academic",
+    "Administrative", 
+    "Dining",
+    "Events",
+    "Accommodation",
+    "Recreation",
+    "Healthcare",
+    "Parking",
+    "Entry",
+    "Research"
+  ]
+}

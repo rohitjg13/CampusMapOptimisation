@@ -1,36 +1,145 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Campus Navigator Frontend
 
-## Getting Started
+A mobile-friendly Next.js frontend for the Campus Navigation API.
 
-First, run the development server:
+## Features
 
+- 📱 **Mobile-First Design**: Optimized for smartphones and tablets
+- 🧭 **Turn-by-Turn Navigation**: Clear, step-by-step directions
+- 🚀 **PWA Support**: Installable as a mobile app
+- ⚡ **Fast & Responsive**: Built with Next.js and Tailwind CSS
+- 🎨 **Modern UI**: Clean, intuitive interface with icons and animations
+
+## Quick Start
+
+1. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+2. **Start the development server:**
+   ```bash
+   npm run dev
+   ```
+
+3. **Open in browser:**
+   Navigate to [http://localhost:3000](http://localhost:3000)
+
+## Backend Connection
+
+The frontend connects to the FastAPI backend running on `http://localhost:8000`. 
+
+Make sure your backend server is running:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# In the backend directory
+python get_route.py
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Environment Variables
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Create a `.env.local` file:
+```env
+NEXT_PUBLIC_API_URL=http://localhost:8000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Mobile Features
 
-## Learn More
+### Progressive Web App (PWA)
+- Installable on mobile devices
+- Works offline (basic functionality)
+- App-like experience with custom splash screen
 
-To learn more about Next.js, take a look at the following resources:
+### Mobile Optimizations
+- Touch-friendly buttons and inputs
+- Responsive layout that adapts to all screen sizes
+- Optimized viewport settings
+- Fast loading with Next.js optimizations
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Mobile Testing
+1. Open Chrome DevTools
+2. Toggle device toolbar (mobile view)
+3. Test with different device sizes
+4. Use lighthouse to audit mobile performance
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Components
 
-## Deploy on Vercel
+- **RouteForm**: Input form for start/end coordinates
+- **RouteResult**: Display route information and turn-by-turn directions
+- **Types**: TypeScript definitions for route data
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Deployment
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Development
+```bash
+npm run dev
+```
+
+### Production Build
+```bash
+npm run build
+npm run start
+```
+
+### Deployment Platforms
+- **Vercel** (recommended for Next.js)
+- **Netlify**
+- **AWS Amplify**
+- **Any static hosting service**
+
+## Mobile Installation
+
+### iOS (Safari)
+1. Open the app in Safari
+2. Tap the share button
+3. Select "Add to Home Screen"
+
+### Android (Chrome)
+1. Open the app in Chrome
+2. Tap the menu (three dots)
+3. Select "Add to Home Screen" or "Install App"
+
+## API Integration
+
+The app calls these backend endpoints:
+
+- `GET /` - Health check
+- `GET /route` - Get navigation route
+
+Example API call:
+```javascript
+const response = await fetch(
+  `${API_URL}/route?start_lat=28.525237&start_lng=77.570965&end_lat=28.525503&end_lng=77.575042`
+);
+```
+
+## Troubleshooting
+
+### Backend Connection Issues
+- Ensure backend server is running on port 8000
+- Check CORS settings in backend
+- Verify environment variables
+
+### Mobile Issues
+- Clear browser cache
+- Check network connectivity
+- Ensure proper viewport meta tags
+
+### Build Issues
+- Delete `.next` folder and rebuild
+- Check for TypeScript errors
+- Verify all dependencies are installed
+
+## Browser Support
+
+- ✅ Chrome (mobile & desktop)
+- ✅ Safari (mobile & desktop)
+- ✅ Firefox (mobile & desktop)
+- ✅ Edge (mobile & desktop)
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test on mobile devices
+5. Submit a pull request

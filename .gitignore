@@ -1,0 +1,7 @@
+cache
+__pycache__
+.next
+/node_modules
+.env
+.DS_Store
+Backend/cache/30e26b5f9869c8b55e2d4fcb28f2fe8da6f89aa2.json

@@ -167,32 +167,6 @@ export default function RouteMap({
         <MapBounds route={route} />
       </MapContainer>
       
-      {/* Click instruction overlay */}
-      {onMapClick && !route && (
-        <div className="map-overlay-top">
-          <p className="text-sm text-gray-700 text-center">
-            {selectedLocation === 'start' && '📍 Tap on the map to set your starting location'}
-            {selectedLocation === 'end' && '🎯 Tap on the map to set your destination'}
-            {!selectedLocation && '🗺️ Tap on the map to set coordinates'}
-          </p>
-        </div>
-      )}
-      
-      {/* Route info overlay */}
-      {route && (
-        <div className="map-overlay-info">
-          <div className="text-sm space-y-1">
-            <div className="flex items-center space-x-2">
-              <span className="text-blue-600">📏</span>
-              <span className="font-medium">{route.total_distance}m</span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <span className="text-purple-600">⏱️</span>
-              <span className="font-medium">{route.estimated_time_minutes} min</span>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

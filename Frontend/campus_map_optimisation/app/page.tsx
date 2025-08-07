@@ -41,14 +41,19 @@ export default function Home() {
       setIsLoading(true);
       setError(null);
 
-      // Build URL with query parameters
-      const url = new URL(`${process.env.NEXT_PUBLIC_API_URL}/route`);
-      url.searchParams.append('start_lat', formData.startLat.toString());
-      url.searchParams.append('start_lng', formData.startLng.toString());
-      url.searchParams.append('end_lat', formData.endLat.toString());
-      url.searchParams.append('end_lng', formData.endLng.toString());
+      // Build URL with query parameters - more robust approach
+      const baseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:8000';
+      const params = new URLSearchParams({
+        start_lat: formData.startLat.toString(),
+        start_lng: formData.startLng.toString(),
+        end_lat: formData.endLat.toString(),
+        end_lng: formData.endLng.toString()
+      });
+      
+      const fullUrl = `${baseUrl}/route?${params.toString()}`;
+      console.log('Fetching route from:', fullUrl); // Debug log
 
-      const response = await fetch(url.toString(), {
+      const response = await fetch(fullUrl, {
         method: 'GET',
         headers: {
           'Accept': 'application/json',
@@ -56,10 +61,13 @@ export default function Home() {
       });
 
       if (!response.ok) {
+        const errorText = await response.text();
+        console.error('API Error Response:', errorText);
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
       const data = await response.json();
+      console.log('API Response:', data); // Debug log
       
       // Check if the response indicates success
       if (data.success && data.route) {
@@ -79,7 +87,20 @@ export default function Home() {
       });
     } catch (err) {
       console.error('Error fetching route:', err);
-      setError('Failed to calculate route. Please try again.');
+      
+      // More specific error messages
+      if (err instanceof TypeError && err.message.includes('string did not match the expected pattern')) {
+        setError('Invalid URL format. Please check your network connection and try again.');
+      } else if (err instanceof SyntaxError) {
+        setError('Invalid response from server. Please try again.');
+      } else if (err instanceof Error) {
+        setError(err.message.includes('Failed to fetch') 
+          ? 'Cannot connect to the server. Please ensure the backend is running.' 
+          : err.message
+        );
+      } else {
+        setError('An unexpected error occurred. Please try again.');
+      }
     } finally {
       setIsLoading(false);
     }

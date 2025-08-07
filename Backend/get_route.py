@@ -112,7 +112,6 @@ async def get_route(
     end_lat: float = Query(..., description="Ending latitude"),
     end_lng: float = Query(..., description="Ending longitude")
 ):
-    """Get route with turn-by-turn navigation instructions"""
     try:
         G = ox.graph_from_xml("map.osm")
 
@@ -153,7 +152,6 @@ async def get_route(
 
 @app.get("/")
 async def root():
-    """Test endpoint"""
     return {"message": "Campus Route API is running!"}
 
 if __name__ == "__main__":

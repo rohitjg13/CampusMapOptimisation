@@ -22,4 +22,6 @@ export type LocationCategory =
   | "Healthcare"
   | "Parking"
   | "Entry"
-  | "Research";
+  | "Research"
+  | "Shopping"  // Added
+  | "Services";   // Added

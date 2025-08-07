@@ -2,9 +2,10 @@
 
 import { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
-import { Navigation, MapPin, Clock, Route, Loader, Maximize2, Minimize2, X } from 'lucide-react';
+import { Navigation, MapPin, Clock, Route, Loader, Maximize2, Minimize2, X, List, Map } from 'lucide-react';
 import RouteForm from './components/RouteForm';
 import RouteResult from './components/RouteResult';
+import RouteDirections from './components/RouteDirections';
 import { RouteData } from './types/route';
 
 // Dynamically import the map component to avoid SSR issues
@@ -24,6 +25,7 @@ export default function Home() {
   const [selectedLocation, setSelectedLocation] = useState<'start' | 'end' | null>(null);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [showRouteForm, setShowRouteForm] = useState(true);
+  const [showDirections, setShowDirections] = useState(false);
   const [coordinates, setCoordinates] = useState({
     startLat: 28.525237,
     startLng: 77.570965,
@@ -44,7 +46,7 @@ export default function Home() {
 
     try {
       const { startLat, startLng, endLat, endLng } = coords;
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://192.168.0.101:8000';
       const url = `${apiUrl}/route?start_lat=${startLat}&start_lng=${startLng}&end_lat=${endLat}&end_lng=${endLng}`;
       
       const response = await fetch(url);
@@ -68,6 +70,7 @@ export default function Home() {
     setError(null);
     setSelectedLocation(null);
     setShowRouteForm(true);
+    setShowDirections(false);
   };
 
   const handleMapClick = (lat: number, lng: number) => {
@@ -102,25 +105,55 @@ export default function Home() {
                 )}
               </div>
             </div>
-            <button
-              onClick={toggleFullscreen}
-              className="p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-all duration-200"
-              aria-label="Exit fullscreen"
-              title="Exit fullscreen"
-            >
-              <Minimize2 className="h-5 w-5" />
-            </button>
+            <div className="flex items-center space-x-2">
+              {route && (
+                <div className="flex bg-gray-100 rounded-xl p-1">
+                  <button
+                    onClick={() => setShowDirections(false)}
+                    className={`p-2 rounded-lg transition-colors ${
+                      !showDirections ? 'bg-white shadow-sm text-blue-600' : 'text-gray-600'
+                    }`}
+                    aria-label="Show map"
+                  >
+                    <Map className="h-4 w-4" />
+                  </button>
+                  <button
+                    onClick={() => setShowDirections(true)}
+                    className={`p-2 rounded-lg transition-colors ${
+                      showDirections ? 'bg-white shadow-sm text-blue-600' : 'text-gray-600'
+                    }`}
+                    aria-label="Show directions"
+                  >
+                    <List className="h-4 w-4" />
+                  </button>
+                </div>
+              )}
+              <button
+                onClick={toggleFullscreen}
+                className="p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-all duration-200"
+                aria-label="Exit fullscreen"
+                title="Exit fullscreen"
+              >
+                <Minimize2 className="h-5 w-5" />
+              </button>
+            </div>
           </div>
         </div>
 
         {/* Fullscreen Map */}
         <div className="h-full pt-16">
-          <RouteMap 
-            route={route} 
-            height="100vh"
-            onMapClick={!route ? handleMapClick : undefined}
-            selectedLocation={selectedLocation}
-          />
+          {showDirections && route ? (
+            <div className="h-full p-4 overflow-y-auto bg-gray-50">
+              <RouteDirections route={route} onReset={handleReset} />
+            </div>
+          ) : (
+            <RouteMap 
+              route={route} 
+              height="100vh"
+              onMapClick={!route ? handleMapClick : undefined}
+              selectedLocation={selectedLocation}
+            />
+          )}
         </div>
 
         {/* Floating Route Form */}
@@ -239,6 +272,32 @@ export default function Home() {
             <Maximize2 className="h-5 w-5" />
           </button>
 
+          {/* Map/Directions Toggle */}
+          {route && (
+            <div className="absolute top-4 left-4 z-10">
+              <div className="flex bg-white/90 backdrop-blur-sm rounded-xl p-1 shadow-lg">
+                <button
+                  onClick={() => setShowDirections(false)}
+                  className={`p-2 rounded-lg transition-colors ${
+                    !showDirections ? 'bg-blue-600 text-white shadow-sm' : 'text-gray-600 hover:text-gray-800'
+                  }`}
+                  aria-label="Show map"
+                >
+                  <Map className="h-4 w-4" />
+                </button>
+                <button
+                  onClick={() => setShowDirections(true)}
+                  className={`p-2 rounded-lg transition-colors ${
+                    showDirections ? 'bg-blue-600 text-white shadow-sm' : 'text-gray-600 hover:text-gray-800'
+                  }`}
+                  aria-label="Show directions"
+                >
+                  <List className="h-4 w-4" />
+                </button>
+              </div>
+            </div>
+          )}
+
           {/* Loading Overlay */}
           {loading && (
             <div className="absolute inset-0 bg-white/80 backdrop-blur-sm flex items-center justify-center z-20">
@@ -298,8 +357,14 @@ export default function Home() {
               </div>
             )}
 
-            {/* Route Result */}
-            {route && <RouteResult route={route} onReset={handleReset} />}
+            {/* Route Result or Directions */}
+            {route && (
+              showDirections ? (
+                <RouteDirections route={route} onReset={handleReset} />
+              ) : (
+                <RouteResult route={route} onReset={handleReset} />
+              )
+            )}
 
             {/* Quick Tips - Only show when no route */}
             {!route && !loading && (

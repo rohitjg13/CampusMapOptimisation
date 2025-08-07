@@ -1,136 +1,633 @@
 {
   "locations": [
     {
-      "id": "library",
-      "name": "Central Library",
-      "lat": 28.525237,
-      "lng": 77.570965,
-      "category": "Academic",
-      "description": "Main campus library with study halls and resources"
-    },
-    {
-      "id": "admin_block",
-      "name": "Administration Block",
-      "lat": 28.524850,
-      "lng": 77.571200,
-      "category": "Administrative",
-      "description": "Main administrative offices and registrar"
-    },
-    {
-      "id": "cafeteria",
-      "name": "Student Cafeteria",
-      "lat": 28.525400,
-      "lng": 77.570700,
-      "category": "Dining",
-      "description": "Main dining hall and food court"
-    },
-    {
-      "id": "computer_center",
-      "name": "Computer Center",
-      "lat": 28.525100,
-      "lng": 77.571300,
-      "category": "Academic",
-      "description": "Computer labs and IT services"
-    },
-    {
-      "id": "auditorium",
-      "name": "Main Auditorium",
-      "lat": 28.524900,
-      "lng": 77.570800,
+      "id": "convocation_arena_indoor_sports_complex",
+      "name": "Convocation Arena (Indoor Sports Complex)",
+      "lat": 28.5212659,
+      "lng": 77.5709869,
       "category": "Events",
-      "description": "Large auditorium for events and lectures"
+      "description": ""
     },
     {
-      "id": "hostel_a",
-      "name": "Hostel A",
-      "lat": 28.525600,
-      "lng": 77.570500,
-      "category": "Accommodation",
-      "description": "Student hostel block A"
+      "id": "sarc",
+      "name": "SARC",
+      "lat": 28.5237344,
+      "lng": 77.5742457,
+      "category": "Events",
+      "description": "Catch the behind the scenes of every event and club here"
     },
     {
-      "id": "hostel_b",
-      "name": "Hostel B",
-      "lat": 28.525700,
-      "lng": 77.570300,
-      "category": "Accommodation",
-      "description": "Student hostel block B"
+      "id": "amphitheatre",
+      "name": "Amphitheatre",
+      "lat": 28.523989,
+      "lng": 77.5743,
+      "category": "Events",
+      "description": "The perfect place to showcase your creative side"
     },
     {
-      "id": "sports_complex",
-      "name": "Sports Complex",
-      "lat": 28.525000,
-      "lng": 77.570400,
+      "id": "snu_lake",
+      "name": "SNU Lake",
+      "lat": 28.525331,
+      "lng": 77.576931,
       "category": "Recreation",
-      "description": "Gymnasium and sports facilities"
+      "description": "Head over to the lake behind the academic blocks to catch the most beautiful sunrise"
     },
     {
-      "id": "engineering_block",
-      "name": "Engineering Department",
-      "lat": 28.524700,
-      "lng": 77.571100,
-      "category": "Academic",
-      "description": "Engineering and technology departments"
-    },
-    {
-      "id": "science_block",
-      "name": "Science Department",
-      "lat": 28.525300,
-      "lng": 77.571000,
-      "category": "Academic",
-      "description": "Science and research laboratories"
-    },
-    {
-      "id": "medical_center",
-      "name": "Medical Center",
-      "lat": 28.524600,
-      "lng": 77.570600,
+      "id": "hcl_health_center",
+      "name": "HCL Health Center",
+      "lat": 28.5265408,
+      "lng": 77.5722039,
       "category": "Healthcare",
-      "description": "Campus health services and medical facilities"
+      "description": ""
     },
     {
-      "id": "parking_main",
-      "name": "Main Parking",
-      "lat": 28.524500,
-      "lng": 77.571400,
-      "category": "Parking",
-      "description": "Main vehicle parking area"
+      "id": "horse_stables",
+      "name": "Horse Stables",
+      "lat": 28.518782,
+      "lng": 77.57357,
+      "category": "Recreation",
+      "description": "Meet our prized possession - our five majestic horses at the stables!"
     },
     {
-      "id": "guest_house",
-      "name": "Guest House",
-      "lat": 28.525500,
-      "lng": 77.571500,
+      "id": "anb_atrium",
+      "name": "AnB Atrium",
+      "lat": 28.526136,
+      "lng": 77.576917,
+      "category": "Dining",
+      "description": "Between Academic blocks A and B lies burger, pasta and coconut chutney"
+    },
+    {
+      "id": "biodiversity_park",
+      "name": "BioDiversity Park",
+      "lat": 28.5223428,
+      "lng": 77.5744256,
+      "category": "Recreation",
+      "description": "The favorite haunt of the birds and bees in the campus A must visit for a nature lover to see the various biodiversity maintained in campus."
+    },
+    {
+      "id": "naveen_tea_house",
+      "name": "Naveen Tea House",
+      "lat": 28.5254585,
+      "lng": 77.5763157,
+      "category": "Dining",
+      "description": "Chai pe charcha or Kofee with Karan- a drink for every mood"
+    },
+    {
+      "id": "library",
+      "name": "Library",
+      "lat": 28.52501,
+      "lng": 77.574915,
+      "category": "Academic",
+      "description": "The best place for socializing, Wi-Fi, AC, books and donuts on campus."
+    },
+    {
+      "id": "hostel_1a_sundarbans",
+      "name": "Hostel 1A (Sundarbans)",
+      "lat": 28.524588,
+      "lng": 77.573023,
       "category": "Accommodation",
-      "description": "Visitor accommodation and guest rooms"
+      "description": "Known as Sunderbans."
     },
     {
-      "id": "main_gate",
-      "name": "Main Gate",
-      "lat": 28.524400,
-      "lng": 77.571600,
-      "category": "Entry",
-      "description": "Main campus entrance and security checkpoint"
+      "id": "hostel_1b_chilika",
+      "name": "Hostel 1B (Chilika)",
+      "lat": 28.524301,
+      "lng": 77.573075,
+      "category": "Accommodation",
+      "description": "Known as Chilika."
     },
     {
-      "id": "research_center",
-      "name": "Research Center",
-      "lat": 28.525800,
-      "lng": 77.570900,
+      "id": "hostel_1c_eagle_nest",
+      "name": "Hostel 1C (Eagle Nest)",
+      "lat": 28.5244585,
+      "lng": 77.5732597,
+      "category": "Accommodation",
+      "description": "Known as Eagles Nest."
+    },
+    {
+      "id": "hostel_2a_hemis",
+      "name": "Hostel 2A (Hemis)",
+      "lat": 28.5229857,
+      "lng": 77.573385,
+      "category": "Accommodation",
+      "description": "Known as Hemis."
+    },
+    {
+      "id": "hostel_2b_kaziranga",
+      "name": "Hostel 2B (Kaziranga)",
+      "lat": 28.5229857,
+      "lng": 77.573385,
+      "category": "Accommodation",
+      "description": "Known as Kaziranga."
+    },
+    {
+      "id": "hostel_2c_periyar",
+      "name": "Hostel 2C (Periyar)",
+      "lat": 28.5228782,
+      "lng": 77.5731148,
+      "category": "Accommodation",
+      "description": "Known as Periyar."
+    },
+    {
+      "id": "hostel_3a_gir",
+      "name": "Hostel 3A (Gir)",
+      "lat": 28.524862,
+      "lng": 77.570837,
+      "category": "Accommodation",
+      "description": "Known as Gir."
+    },
+    {
+      "id": "hostel_3b_dibang",
+      "name": "Hostel 3B (Dibang)",
+      "lat": 28.525172,
+      "lng": 77.57097,
+      "category": "Accommodation",
+      "description": "Known as Dibang."
+    },
+    {
+      "id": "hostel_3c_kanha",
+      "name": "Hostel 3C (Kanha)",
+      "lat": 28.524857,
+      "lng": 77.571364,
+      "category": "Accommodation",
+      "description": "Known as Kanha."
+    },
+    {
+      "id": "hostel_4a_manas",
+      "name": "Hostel 4A (Manas)",
+      "lat": 28.523661,
+      "lng": 77.570002,
+      "category": "Accommodation",
+      "description": "Known as Manas."
+    },
+    {
+      "id": "hostel_4b_marine",
+      "name": "Hostel 4B (Marine)",
+      "lat": 28.524055,
+      "lng": 77.570107,
+      "category": "Accommodation",
+      "description": "Known as Marine."
+    },
+    {
+      "id": "hostel_4c_mudumalai",
+      "name": "Hostel 4C (Mudumalai)",
+      "lat": 28.5234444,
+      "lng": 77.571,
+      "category": "Accommodation",
+      "description": "Known as Mudumalai."
+    },
+    {
+      "id": "hostel_5a_belta",
+      "name": "Hostel 5A (Belta)",
+      "lat": 28.522599,
+      "lng": 77.569385,
+      "category": "Accommodation",
+      "description": "Known as Belta."
+    },
+    {
+      "id": "hostel_5b(bandipur)",
+      "name": "Hostel 5B(Bandipur)",
+      "lat": 28.522612,
+      "lng": 77.57044,
+      "category": "Accommodation",
+      "description": "Known as Belta."
+    },
+    {
+      "id": "hostel_5c_bandhavgarh",
+      "name": "Hostel 5C (Bandhavgarh)",
+      "lat": 28.522925,
+      "lng": 77.569519,
+      "category": "Accommodation",
+      "description": "Known as Bandhavgarh."
+    },
+    {
+      "id": "tower_1",
+      "name": "Tower 1",
+      "lat": 28.528446,
+      "lng": 77.575398,
+      "category": "Accommodation",
+      "description": "Known as Tower 1."
+    },
+    {
+      "id": "tower_2",
+      "name": "Tower 2",
+      "lat": 28.528854,
+      "lng": 77.5768375,
+      "category": "Accommodation",
+      "description": "Known as Tower 2."
+    },
+    {
+      "id": "tower_3",
+      "name": "Tower 3",
+      "lat": 28.529094,
+      "lng": 77.5771375,
+      "category": "Accommodation",
+      "description": "Known as Tower 3."
+    },
+    {
+      "id": "tower_4",
+      "name": "Tower 4",
+      "lat": 28.5297118,
+      "lng": 77.5780086,
+      "category": "Accommodation",
+      "description": "Known as Tower 4."
+    },
+    {
+      "id": "tower_5",
+      "name": "Tower 5",
+      "lat": 28.529865,
+      "lng": 77.5775925,
+      "category": "Accommodation",
+      "description": "Known as Tower 5."
+    },
+    {
+      "id": "tower_6",
+      "name": "Tower 6",
+      "lat": 28.530136,
+      "lng": 77.5779005,
+      "category": "Accommodation",
+      "description": "Known as Tower 6."
+    },
+    {
+      "id": "tower_7",
+      "name": "Tower 7",
+      "lat": 28.529367,
+      "lng": 77.5783155,
+      "category": "Accommodation",
+      "description": "Known as Tower 7."
+    },
+    {
+      "id": "tower_8",
+      "name": "Tower 8",
+      "lat": 28.5287309,
+      "lng": 77.5777427,
+      "category": "Accommodation",
+      "description": "Known as Tower 8."
+    },
+    {
+      "id": "tower_9",
+      "name": "Tower 9",
+      "lat": 28.528857,
+      "lng": 77.5777945,
+      "category": "Accommodation",
+      "description": "Known as Tower 9."
+    },
+    {
+      "id": "tower_10",
+      "name": "Tower 10",
+      "lat": 28.528534,
+      "lng": 77.5777165,
+      "category": "Accommodation",
+      "description": "Known as Tower 10."
+    },
+    {
+      "id": "a_block",
+      "name": "A Block",
+      "lat": 28.5260029,
+      "lng": 77.5754549,
+      "category": "Academic",
+      "description": "It's the engineers' go-to place. Walking through the corridors of this building feels the same as walking through a hall of fame"
+    },
+    {
+      "id": "b_block",
+      "name": "B Block",
+      "lat": 28.5260029,
+      "lng": 77.5754549,
+      "category": "Administrative",
+      "description": "Head here when you feel like you've lost your way. Our admin and academic staff will guide you on the right path."
+    },
+    {
+      "id": "c_block",
+      "name": "C Block",
+      "lat": 28.5260029,
+      "lng": 77.5754549,
+      "category": "Academic",
+      "description": "You might find yourself here attending some meetings or classes. But the best part is, you've got CnD and Naveen to your rescue right outside this building."
+    },
+    {
+      "id": "d_block",
+      "name": "D Block",
+      "lat": 28.5258866,
+      "lng": 77.5755546,
+      "category": "Academic",
+      "description": "The hub of all classes, and faculty offices."
+    },
+    {
+      "id": "f_block",
+      "name": "F Block",
+      "lat": 28.527013,
+      "lng": 77.5727915,
+      "category": "Academic",
+      "description": ""
+    },
+    {
+      "id": "management_block_g_block",
+      "name": "Management Block (G Block)",
+      "lat": 28.5276954,
+      "lng": 77.5737169,
+      "category": "Events",
+      "description": "Not a place to explore in your PJ’s, its auditorium bears some of the most prestigious events on campus!"
+    },
+    {
+      "id": "research_annexe",
+      "name": "Research Annexe",
+      "lat": 28.5274007,
+      "lng": 77.5784083,
       "category": "Research",
-      "description": "Advanced research facilities and labs"
+      "description": "The go to place for research enthusiasts."
+    },
+    {
+      "id": "dining_hall_1",
+      "name": "Dining Hall 1",
+      "lat": 28.524562,
+      "lng": 77.5723814,
+      "category": "Dining",
+      "description": "The dining hall with the most number of attractions for a foodie with evening snacks to midnight snacks."
+    },
+    {
+      "id": "cnd",
+      "name": "CnD",
+      "lat": 28.525418,
+      "lng": 77.576297,
+      "category": "Dining",
+      "description": "Your favorite CnD, with the best coffee rolls and chai on campus"
+    },
+    {
+      "id": "dining_hall_2",
+      "name": "Dining Hall 2",
+      "lat": 28.524422,
+      "lng": 77.570528,
+      "category": "Dining",
+      "description": "Order food, collect food, eat food.Waiting in long lines to ponder if the food's worth it."
+    },
+    {
+      "id": "dining_hall_3",
+      "name": "Dining Hall 3",
+      "lat": 28.5232448,
+      "lng": 77.569707,
+      "category": "Dining",
+      "description": "This Dining hall is the most peaceful and calm place to have food."
+    },
+    {
+      "id": "nescafe",
+      "name": "Nescafe",
+      "lat": 28.52501,
+      "lng": 77.574915,
+      "category": "Dining",
+      "description": "The best and only place for donuts on campus. Your go to place for espresso shots in those late nights."
+    },
+    {
+      "id": "surya_food_and_beverages",
+      "name": "Surya Food and beverages",
+      "lat": 28.5254585,
+      "lng": 77.5763157,
+      "category": "Dining",
+      "description": "Need a quick snack, head to Surya"
+    },
+    {
+      "id": "swad_kathi_roll",
+      "name": "Swad Kathi roll",
+      "lat": 28.5254585,
+      "lng": 77.5763157,
+      "category": "Dining",
+      "description": "Just head to Swad. I dare you to finish their roll. Also serves pizza, fries and poha."
+    },
+    {
+      "id": "rama_enterprise_shakes",
+      "name": "Rama Enterprise (Shakes)",
+      "lat": 28.5253552,
+      "lng": 77.5757365,
+      "category": "Dining",
+      "description": "Beat the heat with juice and shakes. Also bring the heat with their spicy Manchurian and Momos."
+    },
+    {
+      "id": "the_adda",
+      "name": "The Adda",
+      "lat": 28.5260824,
+      "lng": 77.5770077,
+      "category": "Dining",
+      "description": ""
+    },
+    {
+      "id": "the_anna_cafe",
+      "name": "The Anna Cafe",
+      "lat": 28.5260824,
+      "lng": 77.5770077,
+      "category": "Dining",
+      "description": "Go quickly before the Vadas vanish"
+    },
+    {
+      "id": "mahesh_chinese_fast_food",
+      "name": "Mahesh Chinese Fast Food",
+      "lat": 28.5347241,
+      "lng": 77.5750717,
+      "category": "Dining",
+      "description": "Food joint right outside campus."
+    },
+    {
+      "id": "adarsh_dhaba",
+      "name": "Adarsh Dhaba",
+      "lat": 28.534833,
+      "lng": 77.5741563,
+      "category": "Dining",
+      "description": "What happens at Adarsh, stays at Adarsh"
+    },
+    {
+      "id": "parking_1",
+      "name": "Parking 1",
+      "lat": 28.523989,
+      "lng": 77.5743,
+      "category": "Parking",
+      "description": ""
+    },
+    {
+      "id": "parking_2",
+      "name": "Parking 2",
+      "lat": 28.5257937,
+      "lng": 77.5737519,
+      "category": "Parking",
+      "description": ""
+    },
+    {
+      "id": "mini_mart",
+      "name": "Mini Mart",
+      "lat": 28.5249342,
+      "lng": 77.5714668,
+      "category": "Shopping",
+      "description": "The only shop that will fulfill your hunger needs at 4am on those Saturday night outs. It includes a hair saloon for all your styling needs."
+    },
+    {
+      "id": "cycle_repair",
+      "name": "Cycle Repair",
+      "lat": 28.5274325,
+      "lng": 77.5728886,
+      "category": "Services",
+      "description": ""
+    },
+    {
+      "id": "happy_green",
+      "name": "Happy Green",
+      "lat": 28.5289344,
+      "lng": 77.5744123,
+      "category": "Shopping",
+      "description": ""
+    },
+    {
+      "id": "adidas",
+      "name": "Adidas",
+      "lat": 28.5274375,
+      "lng": 77.5726823,
+      "category": "Shopping",
+      "description": ""
+    },
+    {
+      "id": "supermarket",
+      "name": "Supermarket",
+      "lat": 28.5274311,
+      "lng": 77.5728078,
+      "category": "Shopping",
+      "description": ""
+    },
+    {
+      "id": "hdfc_bank",
+      "name": "HDFC Bank",
+      "lat": 28.5247548,
+      "lng": 77.5715031,
+      "category": "Services",
+      "description": "My bank has a new service where they text you your balance. It's cool I just don't think they should add ‘LOL’ at the end."
+    },
+    {
+      "id": "unisex_salon",
+      "name": "Unisex Salon",
+      "lat": 28.5247548,
+      "lng": 77.57146,
+      "category": "Services",
+      "description": ""
+    },
+    {
+      "id": "india_post",
+      "name": "India Post",
+      "lat": 28.5275579,
+      "lng": 77.5772969,
+      "category": "Services",
+      "description": ""
+    },
+    {
+      "id": "medical_store",
+      "name": "Medical Store",
+      "lat": 28.5276063,
+      "lng": 77.5726312,
+      "category": "Healthcare",
+      "description": "need medication or band aids?Located in the arcade, this is the go to place for every SNU student."
+    },
+    {
+      "id": "books_and_stationary",
+      "name": "Books and Stationary",
+      "lat": 28.5276063,
+      "lng": 77.5726312,
+      "category": "Shopping",
+      "description": ""
+    },
+    {
+      "id": "badminton_court_outdoor",
+      "name": "Badminton Court (Outdoor)",
+      "lat": 28.5249742,
+      "lng": 77.5718354,
+      "category": "Recreation",
+      "description": ""
+    },
+    {
+      "id": "badminton_court_indoor",
+      "name": "Badminton Court (Indoor)",
+      "lat": 28.5255896,
+      "lng": 77.5759983,
+      "category": "Recreation",
+      "description": ""
+    },
+    {
+      "id": "basketball_court-1",
+      "name": "Basketball Court-1",
+      "lat": 28.5249742,
+      "lng": 77.5718354,
+      "category": "Recreation",
+      "description": ""
+    },
+    {
+      "id": "basketball_court-2",
+      "name": "Basketball Court-2",
+      "lat": 28.523966,
+      "lng": 77.571325,
+      "category": "Recreation",
+      "description": ""
+    },
+    {
+      "id": "football_field",
+      "name": "Football Field",
+      "lat": 28.523017,
+      "lng": 77.571796,
+      "category": "Recreation",
+      "description": ""
+    },
+    {
+      "id": "tennis_court",
+      "name": "Tennis Court",
+      "lat": 28.523948,
+      "lng": 77.57155,
+      "category": "Recreation",
+      "description": ""
+    },
+    {
+      "id": "volleyball_court",
+      "name": "Volleyball Court",
+      "lat": 28.5244348,
+      "lng": 77.5706511,
+      "category": "Recreation",
+      "description": ""
+    },
+    {
+      "id": "cricket_ground",
+      "name": "Cricket Ground",
+      "lat": 28.526007,
+      "lng": 77.5709629,
+      "category": "Recreation",
+      "description": ""
+    },
+    {
+      "id": "squash_court",
+      "name": "Squash Court",
+      "lat": 28.5255896,
+      "lng": 77.5759983,
+      "category": "Recreation",
+      "description": ""
+    },
+    {
+      "id": "table_tennis_court",
+      "name": "Table Tennis Court",
+      "lat": 28.5255896,
+      "lng": 77.5759983,
+      "category": "Recreation",
+      "description": ""
+    },
+    {
+      "id": "golf_course",
+      "name": "Golf Course",
+      "lat": 28.5282225,
+      "lng": 77.572396,
+      "category": "Recreation",
+      "description": "Hit ‘Em Long And Straight."
     }
   ],
   "categories": [
     "Academic",
-    "Administrative", 
+    "Accommodation",
+    "Administrative",
     "Dining",
     "Events",
-    "Accommodation",
-    "Recreation",
     "Healthcare",
     "Parking",
-    "Entry",
-    "Research"
+    "Recreation",
+    "Research",
+    "Services",
+    "Shopping"
   ]
 }

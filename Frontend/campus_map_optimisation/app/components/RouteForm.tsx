@@ -126,97 +126,104 @@ export default function RouteForm({
   };
 
   return (
-    <div className="space-y-6">
-      {/* Start Location Selector */}
+    <div className="space-y-4">
+      {/* Start Location */}
       <div className="space-y-3">
         <div className="flex items-center space-x-3">
-          <div className="w-10 h-10 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full flex items-center justify-center">
-            <MapPin className="h-5 w-5 text-white" />
+          <div className="w-8 h-8 bg-gradient-to-r from-green-500 to-emerald-600 rounded-xl flex items-center justify-center">
+            <MapPin className="h-4 w-4 text-white" />
           </div>
           <div>
-            <h3 className="text-lg font-semibold text-gray-900">Starting Point</h3>
-            <p className="text-sm text-gray-500">Where are you starting from?</p>
+            <h3 className="font-semibold text-gray-900">From</h3>
+            <p className="text-xs text-gray-500">Starting point</p>
           </div>
         </div>
         <LocationSelector
           value={selectedStartLocation}
           onChange={handleStartLocationChange}
-          placeholder="Choose your starting location"
+          placeholder="Choose starting location"
           allowCurrentLocation={true}
           excludeLocationId={selectedEndLocation?.id}
         />
       </div>
 
       {/* Swap Button */}
-      <div className="flex justify-center">
+      <div className="flex justify-center py-2">
         <button
           type="button"
           onClick={swapLocations}
           disabled={loading || !selectedStartLocation || !selectedEndLocation}
-          className="p-3 text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded-full transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed group"
-          title="Swap start and end locations"
+          className="p-2 text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded-xl transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed"
+          title="Swap locations"
         >
-          <RotateCcw className="h-6 w-6 group-hover:rotate-180 transition-transform duration-300" />
+          <RotateCcw className="h-5 w-5" />
         </button>
       </div>
 
-      {/* End Location Selector */}
+      {/* End Location */}
       <div className="space-y-3">
         <div className="flex items-center space-x-3">
-          <div className="w-10 h-10 bg-gradient-to-r from-red-500 to-pink-600 rounded-full flex items-center justify-center">
-            <MapPin className="h-5 w-5 text-white" />
+          <div className="w-8 h-8 bg-gradient-to-r from-red-500 to-pink-600 rounded-xl flex items-center justify-center">
+            <MapPin className="h-4 w-4 text-white" />
           </div>
           <div>
-            <h3 className="text-lg font-semibold text-gray-900">Destination</h3>
-            <p className="text-sm text-gray-500">Where do you want to go?</p>
+            <h3 className="font-semibold text-gray-900">To</h3>
+            <p className="text-xs text-gray-500">Destination</p>
           </div>
         </div>
         <LocationSelector
           value={selectedEndLocation}
           onChange={handleEndLocationChange}
-          placeholder="Choose your destination"
+          placeholder="Choose destination"
           allowCurrentLocation={false}
           excludeLocationId={selectedStartLocation?.id}
         />
       </div>
 
-      {/* Action Buttons */}
-      <div className="flex flex-col sm:flex-row gap-3 pt-4">
+      {/* Action Button */}
+      <div className="pt-3">
         <button
-          type="submit"
+          type="button"
           onClick={handleSubmit}
           disabled={loading || !selectedStartLocation || !selectedEndLocation}
-          className="flex-1 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-4 rounded-xl font-semibold hover:from-blue-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-3 shadow-lg hover:shadow-xl"
+          className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-4 rounded-2xl font-semibold hover:from-blue-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-3 shadow-lg hover:shadow-xl active:scale-[0.98]"
         >
-          <Navigation className="h-5 w-5" />
-          <span>{loading ? 'Finding Route...' : 'Find Best Route'}</span>
           {loading ? (
-            <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+            <>
+              <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+              <span>Finding Route...</span>
+            </>
           ) : (
-            <ArrowRight className="h-5 w-5" />
+            <>
+              <Navigation className="h-5 w-5" />
+              <span>Find Route</span>
+              <ArrowRight className="h-5 w-5" />
+            </>
           )}
         </button>
-        
+      </div>
+
+      {/* Reset Button */}
+      {(selectedStartLocation || selectedEndLocation) && (
         <button
           type="button"
           onClick={handleReset}
           disabled={loading}
-          className="px-6 py-4 border-2 border-gray-200 text-gray-700 rounded-xl font-semibold hover:bg-gray-50 hover:border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
+          className="w-full text-gray-600 hover:text-gray-800 py-2 text-sm font-medium transition-colors disabled:opacity-50"
         >
-          <RotateCcw className="h-5 w-5" />
-          <span>Reset</span>
+          Reset locations
         </button>
-      </div>
+      )}
 
       {/* Validation Message */}
       {(!selectedStartLocation || !selectedEndLocation) && (
-        <div className="text-center py-4">
-          <p className="text-sm text-gray-500">
+        <div className="text-center py-2">
+          <p className="text-xs text-gray-400">
             {!selectedStartLocation && !selectedEndLocation 
-              ? "Please select both starting point and destination"
+              ? "Select both locations to find route"
               : !selectedStartLocation 
-              ? "Please select a starting point"
-              : "Please select a destination"
+              ? "Choose a starting point"
+              : "Choose a destination"
             }
           </p>
         </div>

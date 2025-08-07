@@ -18,6 +18,7 @@ interface LocationContextType {
   startTracking: () => void;
   stopTracking: () => void;
   hasLocationPermission: boolean;
+  requestLocationPermission: () => Promise<boolean>;
 }
 
 const LocationContext = createContext<LocationContextType | undefined>(undefined);
@@ -41,11 +42,14 @@ export function LocationProvider({ children }: LocationProviderProps) {
 
     try {
       const permission = await navigator.permissions.query({ name: 'geolocation' });
-      setHasLocationPermission(permission.state === 'granted');
-      return permission.state === 'granted';
+      const isGranted = permission.state === 'granted';
+      setHasLocationPermission(isGranted);
+      return isGranted;
     } catch {
       // Fallback for browsers that don't support permissions API
-      return true;
+      // Don't assume permission is granted, let the user trigger the request
+      setHasLocationPermission(false);
+      return false;
     }
   }, []);
 
@@ -60,7 +64,7 @@ export function LocationProvider({ children }: LocationProviderProps) {
 
     const options: PositionOptions = {
       enableHighAccuracy: true,
-      timeout: 10000,
+      timeout: 15000, // Increased timeout
       maximumAge: 5000,
     };
 
@@ -84,19 +88,19 @@ export function LocationProvider({ children }: LocationProviderProps) {
       
       switch (error.code) {
         case error.PERMISSION_DENIED:
-          errorMessage = 'Location access denied by user';
+          errorMessage = 'Location access denied. Please enable location services and refresh the page.';
+          setHasLocationPermission(false);
           break;
         case error.POSITION_UNAVAILABLE:
-          errorMessage = 'Location information unavailable';
+          errorMessage = 'Location information unavailable. Please check your GPS.';
           break;
         case error.TIMEOUT:
-          errorMessage = 'Location request timed out';
+          errorMessage = 'Location request timed out. Please try again.';
           break;
       }
 
       setError(errorMessage);
       setIsTracking(false);
-      setHasLocationPermission(false);
     };
 
     const id = navigator.geolocation.watchPosition(
@@ -106,6 +110,50 @@ export function LocationProvider({ children }: LocationProviderProps) {
     );
 
     setWatchId(id);
+  }, []);
+
+  const requestLocationPermission = useCallback(async (): Promise<boolean> => {
+    if (!navigator.geolocation) {
+      setError('Geolocation is not supported by this browser');
+      return false;
+    }
+
+    return new Promise((resolve) => {
+      const options: PositionOptions = {
+        enableHighAccuracy: true,
+        timeout: 15000,
+        maximumAge: 5000,
+      };
+
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          setHasLocationPermission(true);
+          setError(null);
+          resolve(true);
+        },
+        (error) => {
+          let errorMessage = 'Location access denied';
+          
+          switch (error.code) {
+            case error.PERMISSION_DENIED:
+              errorMessage = 'Location access denied. Please enable location services in your browser settings.';
+              setHasLocationPermission(false);
+              break;
+            case error.POSITION_UNAVAILABLE:
+              errorMessage = 'Location information unavailable. Please check your GPS.';
+              break;
+            case error.TIMEOUT:
+              errorMessage = 'Location request timed out. Please try again.';
+              break;
+          }
+
+          setError(errorMessage);
+          setHasLocationPermission(false);
+          resolve(false);
+        },
+        options
+      );
+    });
   }, []);
 
   const stopTracking = useCallback(() => {
@@ -134,6 +182,7 @@ export function LocationProvider({ children }: LocationProviderProps) {
     startTracking,
     stopTracking,
     hasLocationPermission,
+    requestLocationPermission,
   };
 
   return (

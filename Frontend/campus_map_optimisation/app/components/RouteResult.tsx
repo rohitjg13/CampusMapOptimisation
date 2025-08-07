@@ -187,7 +187,7 @@ export default function RouteResult({ route, routeData, onReset, onStartNavigati
           </h4>
           
           <div className="space-y-3 max-h-80 overflow-y-auto">
-            {instructions.slice(0, 5).map((instruction, index) => (
+            {instructions.map((instruction, index) => (
               <div
                 key={index}
                 className={`flex items-start space-x-3 p-3 rounded-lg transition-colors ${
@@ -235,11 +235,6 @@ export default function RouteResult({ route, routeData, onReset, onStartNavigati
                 </div>
               </div>
             ))}
-            {instructions.length > 5 && (
-              <p className="text-xs text-gray-500 text-center py-2">
-                +{instructions.length - 5} more steps
-              </p>
-            )}
           </div>
         </div>
       )}

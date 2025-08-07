@@ -11,7 +11,7 @@ interface LiveNavigationProps {
 }
 
 export default function LiveNavigation({ destination, onNavigationEnd }: LiveNavigationProps) {
-  const { startTracking, stopTracking, isTracking, hasLocationPermission, error: locationError } = useLocation();
+  const { startTracking, stopTracking, isTracking, hasLocationPermission, error: locationError, requestLocationPermission } = useLocation();
   const {
     currentRoute,
     isNavigating,
@@ -27,19 +27,33 @@ export default function LiveNavigation({ destination, onNavigationEnd }: LiveNav
   } = useNavigation({ destination });
 
   const [hasStartedNavigation, setHasStartedNavigation] = useState(false);
+  const [isRequestingPermission, setIsRequestingPermission] = useState(false);
 
   const handleStartNavigation = async () => {
-    if (!hasLocationPermission) {
-      startTracking();
-      return;
+    setIsRequestingPermission(true);
+    
+    try {
+      // First, explicitly request location permission
+      const permissionGranted = await requestLocationPermission();
+      
+      if (permissionGranted) {
+        // Start tracking location
+        if (!isTracking) {
+          startTracking();
+        }
+        
+        // Start navigation
+        await startNavigation();
+        setHasStartedNavigation(true);
+      } else {
+        // Permission denied, show error message
+        console.log('Location permission denied');
+      }
+    } catch (error) {
+      console.error('Failed to start navigation:', error);
+    } finally {
+      setIsRequestingPermission(false);
     }
-
-    if (!isTracking) {
-      startTracking();
-    }
-
-    await startNavigation();
-    setHasStartedNavigation(true);
   };
 
   const handleStopNavigation = () => {
@@ -78,11 +92,20 @@ export default function LiveNavigation({ destination, onNavigationEnd }: LiveNav
           {!hasStartedNavigation ? (
             <button
               onClick={handleStartNavigation}
-              disabled={!hasLocationPermission && !isTracking}
+              disabled={isRequestingPermission}
               className="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg text-sm font-medium transition-colors disabled:opacity-50"
             >
-              <PlayCircle className="h-4 w-4 mr-2 inline" />
-              Start
+              {isRequestingPermission ? (
+                <>
+                  <div className="h-4 w-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2 inline-block" />
+                  Requesting...
+                </>
+              ) : (
+                <>
+                  <PlayCircle className="h-4 w-4 mr-2 inline" />
+                  Start
+                </>
+              )}
             </button>
           ) : (
             <button
@@ -97,14 +120,14 @@ export default function LiveNavigation({ destination, onNavigationEnd }: LiveNav
       </div>
 
       <div className="p-4 space-y-4">
-        {!hasLocationPermission && (
+        {!hasLocationPermission && !isTracking && (
           <div className="bg-amber-50 border border-amber-200 rounded-xl p-3">
             <div className="flex items-start space-x-3">
               <AlertTriangle className="h-5 w-5 text-amber-600 mt-0.5" />
               <div>
                 <p className="text-sm font-medium text-amber-800">Location Permission Required</p>
                 <p className="text-xs text-amber-700 mt-1">
-                  Please allow location access to start navigation
+                  Click "Start" to enable location access for turn-by-turn navigation
                 </p>
               </div>
             </div>

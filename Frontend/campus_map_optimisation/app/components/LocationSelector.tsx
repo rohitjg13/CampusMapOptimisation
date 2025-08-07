@@ -35,7 +35,6 @@ export default function LocationSelector({
     return matchesSearch && matchesCategory;
   });
 
-    // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: Event) => {
       if (containerRef.current && !containerRef.current.contains(event.target as Node)) {

@@ -1,9 +1,10 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import { MapContainer, TileLayer, Marker, Popup, Polyline, useMap, useMapEvents } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup, Polyline, useMap, useMapEvents, Circle } from 'react-leaflet';
 import L from 'leaflet';
 import { RouteData, Coordinate } from '../types/route';
+import { useLocation } from '../contexts/LocationContext';
 import './map.css';
 
 // Fix for default markers in react-leaflet
@@ -31,6 +32,24 @@ const createCustomIcon = (color: string, isStart: boolean = false, isEnd: boolea
   });
 };
 
+// User location marker with direction indicator
+const createUserLocationIcon = (heading?: number) => {
+  const rotation = heading ? `transform: rotate(${heading}deg);` : '';
+  const iconHtml = `
+    <div class="user-location-marker" style="${rotation}">
+      <div class="user-location-dot"></div>
+      ${heading !== undefined ? '<div class="user-direction-arrow">▲</div>' : ''}
+    </div>
+  `;
+    
+  return L.divIcon({
+    html: iconHtml,
+    className: 'user-location-icon',
+    iconSize: [20, 20],
+    iconAnchor: [10, 10],
+  });
+};
+
 const startIcon = createCustomIcon('#10b981', true);
 const endIcon = createCustomIcon('#ef4444', false, true);
 
@@ -52,18 +71,26 @@ function MapClickHandler({ onMapClick }: { onMapClick?: (lat: number, lng: numbe
   return null;
 }
 
-// Component to fit map bounds to route
-function MapBounds({ route }: { route?: RouteData | null }) {
+// Component to fit map bounds to route or user location
+function MapBounds({ route, userLocation, isNavigating }: { 
+  route?: RouteData | null; 
+  userLocation?: { lat: number; lng: number } | null;
+  isNavigating?: boolean;
+}) {
   const map = useMap();
   
   useEffect(() => {
-    if (route && route.path_coordinates.length > 0) {
+    if (isNavigating && userLocation) {
+      // During navigation, center on user location
+      map.setView([userLocation.lat, userLocation.lng], 18, { animate: true });
+    } else if (route && route.path_coordinates.length > 0) {
+      // When showing route, fit to route bounds
       const bounds = L.latLngBounds(
         route.path_coordinates.map(coord => [coord.lat, coord.lng] as [number, number])
       );
       map.fitBounds(bounds, { padding: [20, 20] });
     }
-  }, [route, map]);
+  }, [route, userLocation, isNavigating, map]);
   
   return null;
 }
@@ -73,19 +100,26 @@ interface RouteMapProps {
   onMapClick?: (lat: number, lng: number) => void;
   height?: string;
   selectedLocation?: 'start' | 'end' | null;
+  isNavigating?: boolean;
+  showUserLocation?: boolean;
 }
 
 export default function RouteMap({ 
   route, 
   onMapClick, 
   height = '400px',
-  selectedLocation 
+  selectedLocation,
+  isNavigating = false,
+  showUserLocation = true
 }: RouteMapProps) {
   const mapRef = useRef<L.Map>(null);
+  const { currentLocation, isTracking } = useLocation();
   
   // Default center (campus location)
   const defaultCenter: [number, number] = [28.525237, 77.570965];
-  const center = route 
+  const center = currentLocation && isNavigating
+    ? [currentLocation.latitude, currentLocation.longitude] as [number, number]
+    : route && route.start
     ? [route.start.lat, route.start.lng] as [number, number]
     : defaultCenter;
 
@@ -93,6 +127,10 @@ export default function RouteMap({
   const polylineCoords = route?.path_coordinates.map(coord => 
     [coord.lat, coord.lng] as [number, number]
   ) || [];
+
+  const userLocationIcon = currentLocation?.heading 
+    ? createUserLocationIcon(currentLocation.heading)
+    : createUserLocationIcon();
 
   return (
     <div className="map-container relative w-full h-full">
@@ -122,13 +160,46 @@ export default function RouteMap({
           <Polyline
             positions={polylineCoords}
             color="#3b82f6"
-            weight={4}
+            weight={6}
             opacity={0.8}
           />
         )}
+
+        {/* User location marker and accuracy circle */}
+        {showUserLocation && currentLocation && isTracking && (
+          <>
+            <Circle
+              center={[currentLocation.latitude, currentLocation.longitude]}
+              radius={currentLocation.accuracy}
+              fillColor="#3b82f6"
+              fillOpacity={0.1}
+              color="#3b82f6"
+              weight={1}
+              opacity={0.3}
+            />
+            <Marker
+              position={[currentLocation.latitude, currentLocation.longitude]}
+              icon={userLocationIcon}
+            >
+              <Popup>
+                <div className="text-sm">
+                  <strong className="text-blue-600">Your Location</strong>
+                  <br />
+                  Accuracy: ±{Math.round(currentLocation.accuracy)}m
+                  {currentLocation.speed && (
+                    <>
+                      <br />
+                      Speed: {Math.round(currentLocation.speed * 3.6)} km/h
+                    </>
+                  )}
+                </div>
+              </Popup>
+            </Marker>
+          </>
+        )}
         
         {/* Start marker */}
-        {route && (
+        {route && route.start && (
           <Marker
             position={[route.start.lat, route.start.lng]}
             icon={startIcon}
@@ -144,7 +215,7 @@ export default function RouteMap({
         )}
         
         {/* End marker */}
-        {route && (
+        {route && route.end && (
           <Marker
             position={[route.end.lat, route.end.lng]}
             icon={endIcon}
@@ -164,7 +235,11 @@ export default function RouteMap({
         )}
         
         {/* Auto-fit bounds when route changes */}
-        <MapBounds route={route} />
+        <MapBounds 
+          route={route} 
+          userLocation={currentLocation ? { lat: currentLocation.latitude, lng: currentLocation.longitude } : null}
+          isNavigating={isNavigating}
+        />
       </MapContainer>
       
     </div>
